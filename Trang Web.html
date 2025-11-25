@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💾 Chuyên Đề Tin Học: VS Code & GitHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Dành cho phong cách công nghệ: Nền đen, Chữ trắng, Điểm nhấn Tím Neon */
+        :root {
+            --color-dark: #0a0a0a;
+            --color-text-main: #f0f0f0;
+            --color-purple-neon: #a020f0; /* Vivid Purple */
+            --color-purple-accent: #ff00ff; /* Electric Magenta */
+            --color-code-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--color-dark);
+            color: var(--color-text-main);
+            font-family: 'Roboto Mono', Consolas, 'Courier New', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgba(10, 10, 10, 0.8); /* Nền tối nhẹ cho nội dung */
+            box-shadow: 0 0 20px rgba(160, 32, 240, 0.2); /* Hiệu ứng tỏa sáng tím bí ẩn */
+            border: 1px solid var(--color-purple-neon);
+        }
+
+        /* Tiêu đề chính */
+        h1 {
+            color: var(--color-purple-accent);
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 0 0 15px var(--color-purple-accent);
+            border-bottom: 4px solid var(--color-purple-neon);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Tiêu đề phụ */
+        h2 {
+            color: var(--color-purple-neon);
+            font-size: 1.8em;
+            text-shadow: 0 0 8px rgba(160, 32, 240, 0.5);
+            border-bottom: 2px dashed var(--color-code-bg);
+            padding-top: 15px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            color: var(--color-text-main);
+            font-size: 1.4em;
+            border-left: 5px solid var(--color-purple-neon);
+            padding-left: 10px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            color: var(--color-purple-accent);
+            font-size: 1.1em;
+            margin-top: 15px;
+        }
+        
+        /* Đường phân cách */
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: var(--color-purple-accent);
+            box-shadow: 0 0 8px var(--color-purple-accent);
+            margin: 40px 0;
+        }
+
+        /* Danh sách */
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        /* Biểu tượng thay thế dấu chấm cho danh sách */
+        ul li::before {
+            content: '»'; 
+            color: var(--color-purple-neon);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Chữ in đậm */
+        strong {
+            color: var(--color-purple-accent);
+        }
+
+        /* Liên kết */
+        a {
+            color: var(--color-purple-accent);
+            text-decoration: none;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-text-main);
+            text-shadow: 0 0 5px var(--color-purple-accent);
+        }
+
+        /* Khối code inline và code block */
+        code {
+            background-color: var(--color-code-bg);
+            color: var(--color-purple-accent);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: var(--color-code-bg);
+            border: 1px solid var(--color-purple-neon);
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            box-shadow: 0 0 10px rgba(160, 32, 240, 0.3);
+        }
+
+        /* Khối trích dẫn (Lưu ý) */
+        blockquote {
+            background-color: rgba(160, 32, 240, 0.1);
+            border-left: 5px solid var(--color-purple-neon);
+            padding: 10px 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--color-text-main);
+        }
+
+        /* Bảng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid var(--color-purple-neon);
+        }
+
+        th, td {
+            border: 1px solid var(--color-purple-accent);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(160, 32, 240, 0.3);
+            color: var(--color-text-main);
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(16, 16, 16, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💾 CHUYÊN ĐỀ TIN HỌC</h1>
+        <h2>✨ Làm quen với Visual Studio Code & Github</h2>
+
+        <hr>
+
+        <h2>💡 A. TỔNG QUAN</h2>
+        <ul>
+            <li><strong>VS Code:</strong> là trình soạn thảo mã nguồn miễn phí do Microsoft phát triển, hỗ trợ rất nhiều ngôn ngữ lập trình như C++, Python, Java, JavaScript…; sở hữu hệ thống extension phong phú.</li>
+            <li><strong>GitHub:</strong> là nền tảng lưu trữ và chia sẻ mã nguồn trực tuyến, dựa trên Git. Nó cho phép quản lý phiên bản, làm việc nhóm, và tham gia vào các dự án mã nguồn mở.</li>
+            <li><strong>Git:</strong> Git là hệ thống quản lý phiên bản (<strong>Version Control System</strong>) giúp theo dõi lịch sử thay đổi mã nguồn, tạo nhánh, hợp nhất và làm việc nhóm hiệu quả, do Linus Torvalds tạo ra.</li>
+            <li><strong>GitHub Desktop:</strong> GitHub Desktop là ứng dụng giao diện (<strong>GUI</strong>) giúp bạn sử dụng Git và GitHub dễ dàng hơn mà không cần dùng lệnh.</li>
+        </ul>
+
+        <hr>
+
+        <h2>🛠️ B. CÀI ĐẶT & THIẾT LẬP</h2>
+
+        <h3>⬇️ I. CÀI ĐẶT</h3>
+
+        <h4>1. VS Code</h4>
+        <ol>
+            <li>Truy cập trang chính thức: <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com</a>.</li>
+            <li>Chọn nút <strong>Download</strong> phù hợp với hệ điều hành (Windows, macOS, Linux).</li>
+            <li>Mở file cài đặt → nhấn <strong>Next</strong> liên tục → chọn <strong>Install</strong>.</li>
+            <li>Sau khi cài xong, mở VSCode để kiểm tra.</li>
+            <li><strong>(Khuyến nghị)</strong> Cài thêm extension:
+                <ul>
+                    <li><strong>🌟 GitLens:</strong> Xem lịch sử commit, tác giả từng dòng.</li>
+                    <li><strong>🎨 Prettier:</strong> Định dạng mã nguồn tự động.</li>
+                    <li><strong>🔗 GitHub Pull Requests & Issues:</strong> Quản lý PR trực tiếp trong VS Code.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <blockquote>
+            <strong>⚠️ Lưu ý:</strong> Chỉnh cấu hình cơ bản (Theme, font, Tiếng Việt,.. nếu cần).
+        </blockquote>
+
+        <h4>2. Git</h4>
+        <ol>
+            <li>Vào trang chính thức: <a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a>.</li>
+            <li>Chọn phiên bản phù hợp với hệ điều hành (Windows/macOS/Linux).</li>
+            <li>Mở file cài đặt → nhấn <strong>Next</strong> liên tục → <strong>Install</strong> → <strong>Finish</strong>.</li>
+            <li>Kiểm tra bằng cách mở <strong>Terminal/Command Prompt</strong> và gõ: <code>git --version</code>.</li>
+            <li>Nếu hiện số phiên bản là cài thành công.</li>
+            <li>Cấu hình thông tin lần đầu:
+                <pre><code>git config --global user.name "Tên của bạn"
+git config --global user.email "Email của bạn"</code></pre>
+            </li>
+        </ol>
+
+        <blockquote>
+            <strong>⚠️ Lưu ý:</strong> Các cấu hình thông tin sẽ gắn liền với các commit.
+        </blockquote>
+
+        <h4>3. GitHub Desktop</h4>
+        <ol>
+            <li>Truy cập <a href="https://desktop.github.com" target="_blank">https://desktop.github.com</a>.</li>
+            <li>Tải về và cài đặt như phần mềm bình thường.</li>
+            <li>Đăng nhập bằng tài khoản GitHub.</li>
+        </ol>
+
+        <blockquote>
+            <strong>⚠️ Lưu ý:</strong>
+            <ul>
+                <li>Giao diện chính có các nút: <strong>Clone a repository, Create a new repository, Add an existing repository</strong>.</li>
+                <li>Có thể mở dự án bằng VSCode trực tiếp từ GitHub Desktop.</li>
+            </ul>
+        </blockquote>
+
+        <h3>⚙️ II. THIẾT LẬP</h3>
+
+        <h4>1. Tạo tài khoản GitHub</h4>
+        <ol>
+            <li>Vào <a href="https://github.com" target="_blank">https://github.com</a>.</li>
+            <li>Nhấn <strong>Sign up</strong> → nhập email, mật khẩu, username.</li>
+            <li>Xác nhận email để hoàn tất.</li>
+        </ol>
+
+        <blockquote>
+            <strong>⚠️ Lưu ý:</strong>
+            <ul>
+                <li>Sau khi đăng nhập, bạn có thể tạo repo mới bằng nút <strong>New repository</strong> (Tạo kho chứa mã nguồn mới).</li>
+                <li>Chỉnh <strong>Public & Private</strong>:
+                    <ul>
+                        <li><strong>Public:</strong> Ai cũng xem được.</li>
+                        <li><strong>Private:</strong> Chỉ bạn (hoặc nhóm được cấp quyền) xem được.</li>
+                    </ul>
+                </li>
+            </ul>
+        </blockquote>
+
+        <h4>2. Kết nối VS Code với GitHub</h4>
+        <ol>
+            <li>Mở VSCode → nhấn <strong>Ctrl + Shift + P</strong>.</li>
+            <li>Gõ: <strong>GitHub: Sign in</strong> → chọn đăng nhập bằng trình duyệt.</li>
+            <li>Đăng nhập tài khoản GitHub → cấp quyền truy cập.</li>
+            <li>VSCode sẽ lưu token xác thực → có thể <strong>push/pull</strong> trực tiếp.</li>
+            <li>Kiểm tra tab <strong>Source Control</strong> đã hoạt động.</li>
+        </ol>
+
+        <blockquote>
+            <strong>⚠️ Lưu ý:</strong> Tab <strong>Source Control</strong> là nơi hiển thị mọi thay đổi.
+        </blockquote>
+
+        <h4>3. Đăng nhập tài khoản GitHub trên GitHub desktop</h4>
+        <ol>
+            <li>Mở GitHub Desktop.</li>
+            <li>Nhấn <strong>File</strong> → <strong>Options</strong> (hoặc biểu tượng bánh răng).</li>
+            <li>Chọn <strong>Sign in to GitHub.com</strong>.</li>
+            <li>Đăng nhập tài khoản → xác nhận.</li>
+            <li>Sau khi đăng nhập, có thể <strong>clone, tạo repo, commit, push</strong> dễ dàng.</li>
+        </ol>
+
+        <hr>
+
+        <h2>💻 C. LÀM VIỆC CÙNG GITHUB</h2>
+
+        <h3>I. QUA VS CODE & GITHUB DESKTOP</h3>
+
+        <h4>1. Lấy dự án từ GitHub về để chỉnh sửa</h4>
+
+        <h5>a. Trực tiếp bằng VS Code</h5>
+        <ol>
+            <li>Vào GitHub → chọn repo cần lấy.</li>
+            <li>Nhấn nút <strong>Code</strong> → copy link <strong>HTTPS</strong>.</li>
+            <li>Mở VSCode → <strong>Terminal</strong> → gõ: <code>git clone &lt;link_repo&gt;</code>.</li>
+            <li>Mở thư mục vừa <strong>clone</strong> → chỉnh sửa, <strong>commit, push</strong>.</li>
+        </ol>
+
+        <h5>b. Thông qua GitHub Destop</h5>
+        <ol>
+            <li>Mở GitHub Desktop → chọn <strong>Clone a repository</strong> → chọn <strong>URL</strong>.</li>
+            <li>Dán link repo hoặc chọn repo từ danh sách.</li>
+            <li>Nhấn <strong>Clone</strong> → mở bằng VSCode để chỉnh sửa.</li>
+        </ol>
+
+        <h4>2. Đưa dự án của bản thân lên GitHub</h4>
+
+        <h5>a. Trực tiếp bằng VS Code</h5>
+        <ol>
+            <li>Mở thư mục dự án bằng VSCode.</li>
+            <li>Mở tab <strong>Source Control</strong> → nhấn <strong>Initialize Repository</strong>.</li>
+            <li>Gõ nội dung <strong>commit</strong> → nhấn <strong>Commit</strong>.</li>
+            <li>Nhấn <strong>Publish to GitHub</strong> → đăng nhập tài khoản.</li>
+            <li>Chọn tạo repo mới hoặc repo có sẵn.
+                <blockquote>Sau đó: Commit → Push mỗi khi cập nhật.</blockquote>
+            </li>
+        </ol>
+
+        <h5>b. Thông qua GitHub Desktop</h5>
+        <ol>
+            <li>Mở GitHub Desktop → chọn <strong>Create a new repository</strong>.</li>
+            <li>Chọn thư mục dự án → đặt tên repo.</li>
+            <li>Nhấn <strong>Publish repository</strong> để đưa lên GitHub.</li>
+            <li>Sau khi chỉnh sửa → <strong>Commit</strong> → <strong>Push origin</strong>.</li>
+            <li>Mở bằng VSCode để tiếp tục làm việc.</li>
+        </ol>
+
+        <h3>🌐 II. TRỰC TIẾP TRÊN GITHUB QUA GITHUB CODESPACE</h3>
+
+        <h4>1. GitHub CodeSpace là gì?</h4>
+        <ul>
+            <li>Là môi trường lập trình trực tuyến giống <strong>Visual Studio Code</strong>.</li>
+            <li>Chạy trực tiếp trên GitHub, không cần cài đặt phần mềm.</li>
+            <li>Tự động tải mã nguồn, cài thư viện, và lưu thay đổi.</li>
+            <li>Phù hợp để chỉnh sửa nhanh, làm việc nhóm, hoặc tham gia vào các dự án mã nguồn mở.</li>
+        </ul>
+
+        <h4>2. Cách sử dụng GitHub CodeSpace</h4>
+        <ol>
+            <li>Vào trang GitHub → đăng nhập tài khoản.</li>
+            <li>Tìm địa chỉ repo bạn muốn chỉnh sửa (có thể là repo của người khác hoặc repo của bạn).</li>
+            <li>Nhấn nút <strong>Code</strong> → chọn tab <strong>Codespaces</strong>.</li>
+            <li>Nhấn <strong>Create with Codespaces</strong> hoặc <strong>New codespace</strong>.</li>
+            <li>GitHub sẽ mở giao diện VSCode trực tiếp trong trình duyệt.</li>
+            <li>Bạn có thể chỉnh sửa, commit, push ngay trên web mà không cần tải về.</li>
+            <li>Nếu muốn đóng góp vào dự án người khác → tạo <strong>Pull Request</strong>.</li>
+        </ol>
+
+        <hr>
+
+        <h2>🤝 D. THAM GIA DỰ ÁN MÃ NGUỒN MỞ</h2>
+
+        <h3>I. MÃ NGUỒN MỞ LÀ GÌ?</h3>
+        <ul>
+            <li>Là các dự án phần mềm có mã nguồn công khai, ai cũng có thể xem, sử dụng, chỉnh sửa và đóng góp.</li>
+            <li>Giúp cộng đồng cùng phát triển phần mềm, học hỏi lẫn nhau.</li>
+            <li>Các giấy phép phổ biến: <strong>MIT, GPL, Apache</strong>.</li>
+        </ul>
+
+        <h3>II. CÁCH THAM GIA VÀO DỰ ÁN MÃ NGUỒN MỞ</h3>
+
+        <h4>1. Tìm dự án phù hợp</h4>
+        <ul>
+            <li>Truy cập <a href="https://github.com/explore" target="_blank">https://github.com/explore</a> hoặc <a href="https://opensource.guide" target="_blank">https://opensource.guide</a>.</li>
+            <li>Tìm dự án theo ngôn ngữ bạn biết (Python, JavaScript, C++, v.v.).</li>
+            <li>Ưu tiên chọn dự án có nhãn <strong>good first issue</strong> hoặc <strong>help wanted</strong>.</li>
+        </ul>
+
+        <h4>2. Quy trình tham gia</h4>
+        <ol>
+            <li><strong>Fork</strong> dự án: tạo bản sao repo về tài khoản của bạn.</li>
+            <li><strong>Clone</strong> repo fork về máy để chỉnh sửa: <code>git clone &lt;link_repo_fork&gt;</code>.</li>
+            <li>Tạo nhánh mới để làm việc riêng: <code>git checkout -b ten-nhanh-moi</code>.</li>
+            <li>Chỉnh sửa mã nguồn → <strong>commit</strong> → <strong>push</strong> lên repo fork.</li>
+            <li>Tạo <strong>Pull Request</strong> để gửi thay đổi cho repo gốc.</li>
+            <li>Chủ dự án sẽ <strong>review</strong> → nếu đồng ý sẽ <strong>merge</strong> vào dự án chính.</li>
+        </ol>
+
+        <h4>3. Lưu ý khi đóng góp</h4>
+        <ul>
+            <li>Bạn có thể thực hiện tương tự thông qua <strong>Github CodeSpace</strong>.</li>
+            <li>Đọc kỹ file <strong>README.md</strong> và <strong>CONTRIBUTING.md</strong> của dự án.</li>
+            <li>Viết <strong>commit</strong> rõ ràng, dễ hiểu.</li>
+            <li>Tôn trọng quy tắc cộng đồng, phản hồi lịch sự.</li>
+            <li>Có thể bắt đầu bằng việc sửa lỗi nhỏ, cải thiện tài liệu, hoặc thêm tính năng đơn giản.</li>
+        </ul>
+
+        <hr>
+
+        <h2>✅ E. TỔNG KẾT</h2>
+        <ul>
+            <li><strong>VS Code:</strong> Công cụ viết code mạnh mẽ và phổ biến.</li>
+            <li><strong>Git:</strong> Công cụ quản lý phiên bản không thể thiếu.</li>
+            <li><strong>GitHub:</strong> Nơi lưu trữ, chia sẻ mã nguồn và làm việc nhóm.</li>
+            <li><strong>GitHub Desktop:</strong> Dễ dùng, trực quan cho người mới.</li>
+        </ul>
+
+        <blockquote>
+            <strong>→ Bộ công cụ giúp học sinh – sinh viên làm việc khoa học, chuyên nghiệp, hiệu quả hơn.</strong>
+        </blockquote>
+
+        <hr>
+
+        <h2>📝 F. TÌM HIỂU VỀ MARKDOWN</h2>
+
+        <h3>I. FILE MARKDOWN LÀ GÌ</h3>
+        <ul>
+            <li><strong>Markdown (.md)</strong> là một định dạng văn bản thuần (<strong>plain text</strong>) dùng để trình bày nội dung bằng các ký hiệu rất đơn giản.</li>
+            <li>Bạn có thể hiểu Markdown là: “Giống Word nhưng nhẹ hơn, không dùng định dạng phức tạp, chỉ dùng ký hiệu như <strong>#, *, -</strong> … để trình bày.”</li>
+            <li>Markdown dùng cực nhiều trong:
+                <ul>
+                    <li>GitHub (<strong>README.md</strong>).</li>
+                    <li>Viết tài liệu, note.</li>
+                    <li>VSCode.</li>
+                    <li>Viết blog, wiki.</li>
+                </ul>
+            </li>
+            <li>Markdown không phải là file Word, nó chỉ là text + ký hiệu.</li>
+        </ul>
+
+        <h3>II. CẤU TRÚC CỦA FILE MARKDOWN</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Yếu tố định dạng</th>
+                    <th>Ký hiệu Markdown</th>
+                    <th>Ví dụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tiêu đề</strong></td>
+                    <td><code>#</code> (từ 1 đến 6 dấu)</td>
+                    <td><code># Tiêu đề 1</code></td>
+                </tr>
+                <tr>
+                    <td><strong>In đậm</strong></td>
+                    <td><code>**...**</code> hoặc <code>__...__</code></td>
+                    <td><code>**văn bản in đậm**</code></td>
+                </tr>
+                <tr>
+                    <td><strong>In nghiêng</strong></td>
+                    <td><code>*...*</code> hoặc <code>_..._</code></td>
+                    <td><code>*văn bản in nghiêng*</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Danh sách không thứ tự</strong></td>
+                    <td><code>*</code>, <code>+</code>, hoặc <code>-</code></td>
+                    <td><code>* Mục 1</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Danh sách có thứ tự</strong></td>
+                    <td>Số theo sau là dấu chấm</td>
+                    <td><code>1. Mục đầu tiên</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Khối trích dẫn</strong></td>
+                    <td><code>></code></td>
+                    <td><code>> Đây là trích dẫn</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Liên kết</strong></td>
+                    <td><code>[Văn bản liên kết](URL)</code></td>
+                    <td><code>[Google](https://www.google.com)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Hình ảnh</strong></td>
+                    <td><code>![Văn bản thay thế](URL hình ảnh)</code></td>
+                    <td><code>![Ảnh ví dụ](url/anh.png)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Code Inline</strong></td>
+                    <td><code>`...`</code></td>
+                    <td><code>`print("Hello")`</code></td>
+                </tr>
+                <tr>
+                    <td><strong>Khối code</strong></td>
+                    <td><code>``` (3 dấu)</code></td>
+                    <td>
+<pre style="padding: 0; margin: 0; border: none; background: transparent; box-shadow: none;"><code>```python
+print("Hello")
+```</code></pre>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>III. CÁCH CHUYỂN TỪ FILE WORD (.DOCX) THÀNH FILE MARKDOWN (.MD)</h3>
+        <p>Có nhiều cách để chuyển từ file Word (.docx) sang file Markdown (.md):</p>
+        <ul>
+            <li><strong>Sử dụng Công cụ Chuyển đổi Trực tuyến:</strong> Có nhiều trang web cung cấp dịch vụ chuyển đổi từ Word sang Markdown (ví dụ: Word to Markdown Converter). Bạn tải file Word lên và tải file Markdown về.</li>
+            <li><strong>Sử dụng pandoc (Nâng cao):</strong> Đây là một công cụ chuyển đổi tài liệu mạnh mẽ, thường được dùng qua Command Line (Dòng lệnh).
+                <ul>
+                    <li><em>Lệnh ví dụ:</em> <code>pandoc -s ten_file_word.docx -o ten_file_markdown.md</code></li>
+                </ul>
+            </li>
+            <li><strong>Sử dụng các Tính năng Xuất/Lưu:</strong> Một số phần mềm soạn thảo văn bản hoặc các plugin chuyên biệt có thể có tùy chọn <strong>Lưu dưới dạng</strong> (Save As) hoặc <strong>Xuất</strong> (Export) sang định dạng .md.</li>
+            <li><strong>Sao chép và Dán:</strong> Đối với văn bản đơn giản, bạn có thể sao chép nội dung từ Word và dán vào một trình soạn thảo Markdown, sau đó tự định dạng lại bằng tay.</li>
+            <li><strong>Đưa file cho một A.I bất kì:</strong> Yêu cầu chuyển thành file Markdown, như Genimi, ChatGPT, Copilot,….</li>
+        </ul>
+
+        <h3>IV. SỬ DỤNG FILE MARKDOWN TRONG VS CODE & GITHUB</h3>
+
+        <h4>1. Soạn thảo: Viết tài liệu trong VS Code</h4>
+        <ul>
+            <li>Bạn sử dụng VS Code để viết nội dung như bình thường, nhưng thay vì dùng các nút định dạng phức tạp như trong Word, bạn sử dụng <strong>cú pháp Markdown</strong>.</li>
+            <li><strong>Thao tác:</strong> Mở một file mới và đặt tên là <code>README.md</code> (hoặc bất kỳ tên <code>.md</code> nào khác).</li>
+            <li><strong>Điểm đặc biệt của VS Code:</strong>
+                <ul>
+                    <li>Cung cấp tính năng <strong>Tô sáng cú pháp</strong> (<strong>Syntax Highlighting</strong>): Nó sẽ tô màu các ký hiệu Markdown (như #, **, *) giúp bạn dễ nhận biết cú pháp hơn.</li>
+                    <li><strong>Xem trước (Preview) Trực tiếp:</strong> Bạn có thể nhấn vào nút "Mở + + Xem trước" để chia màn hình làm đôi:
+                        <ul>
+                            <li><strong>Bên trái:</strong> Nơi bạn gõ cú pháp Markdown (# Tiêu đề).</li>
+                            <li><strong>Bên phải:</strong> Nơi bạn thấy kết quả hiển thị như trên GitHub (một dòng chữ to và đậm).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Trực quan:</strong> VS Code cho bạn thấy ngay lập tức tài liệu sẽ trông như thế nào trước khi bạn đưa nó lên mạng.</li>
+        </ul>
+
+        <h4>2. Đưa lên GitHub: Kết nối và Đồng bộ</h4>
+        <ul>
+            <li>Sau khi bạn đã hoàn tất việc viết tài liệu trong VS Code, bạn cần đưa nó lên <strong>Repository</strong> (Kho lưu trữ) trên GitHub của mình.</li>
+            <li><strong>Công cụ:</strong> Bạn sử dụng các công cụ <strong>Quản lý phiên bản (Source Control)</strong> tích hợp sẵn trong VS Code (thường là Git/GitHub).</li>
+            <li><strong>Hành động:</strong> Bạn <strong>Commit</strong> (ghi nhận các thay đổi) và sau đó <strong>Push</strong> (đẩy) file .md này từ máy tính của bạn lên GitHub.</li>
+        </ul>
+
+        <h4>3. Hiển thị: Kết quả trên GitHub</h4>
+        <ul>
+            <li>Khi file <code>.md</code> đã có mặt trên GitHub, GitHub sẽ tự động nhận diện và chuyển đổi nó.</li>
+            <li><strong>Kết quả:</strong>
+                <ul>
+                    <li>Nếu đó là file <code>README.md</code> nằm ở thư mục gốc, nội dung sẽ hiển thị ngay trên trang chính của Repository, biến nó thành một trang giới thiệu dự án đẹp mắt.</li>
+                    <li>Nếu đó là file tài liệu khác, khi người dùng click vào file, GitHub sẽ hiển thị nó dưới dạng trang web có định dạng hoàn chỉnh.</li>
+                </ul>
+            </li>
+            <li><strong>Trực quan:</strong> File Markdown là nguyên liệu thô (cú pháp), và GitHub là cái máy in ấn (kết xuất) biến nguyên liệu thô đó thành một trang tài liệu đẹp mắt, dễ đọc trên web. Cả quá trình này được kiểm soát bởi VS Code trên máy tính của bạn.</li>
+        </ul>
+    </div>
+</body>
+</html>
