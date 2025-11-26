@@ -1,5 +1,4 @@
-﻿        ## 💾 CHUYÊN ĐỀ TIN HỌC
-
+﻿ 
 ## ✨ Làm quen với Visual Studio Code & Github
 
 ---
